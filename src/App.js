@@ -297,7 +297,7 @@ function App() {
   const audioPlayer = useRef();
 
   const [speak, setSpeak] = useState(false);
-  const [text, setText] = useState("My name is Arwen. I'm a virtual human who can speak whatever you type here along with realistic facial movements.");
+  const [text, setText] = useState("");
   const [audioSource, setAudioSource] = useState(null);
   const [playing, setPlaying] = useState(false);
 
@@ -314,14 +314,32 @@ function App() {
     setPlaying(true);
 
   }  
-
   return (
-    <div className="full">
-      <div style={STYLES.area}>
-        <textarea rows={4} type="text" style={STYLES.text} value={text} onChange={(e) => setText(e.target.value.substring(0, 200))} />
-        <button onClick={() => setSpeak(true)} style={STYLES.speak}> { speak? 'Running...': 'Speak' }</button>
 
-      </div>
+    
+    <div className="full">
+      {/* <div style={STYLES.area}>
+
+
+        <input rows={4} type="text" style={STYLES.text} value={text} onChange={(e) => setText(e.target.value.substring(0, 200))} />
+        <button onClick={() => setSpeak(true)} style={STYLES.speak}> { speak? 'Sending...': 'Send' }</button>
+
+      </div> */}
+<div style={STYLES.full}>
+  <div style={STYLES.area}>
+    <input
+      rows={4}
+      type="text"
+      style={STYLES.text}
+      value={text}
+      onChange={(e) => setText(e.target.value.substring(0, 200))}
+      placeholder='Ask me a question'
+    />
+    <button onClick={() => setSpeak(true)} style={STYLES.speak}>
+      {speak ? 'Sending...' : 'Send'}
+    </button>
+  </div>
+</div>
 
       <ReactAudioPlayer
         src={audioSource}
@@ -375,9 +393,20 @@ function App() {
   </Canvas>
   <Loader dataInterpolation={(p) => `Loading... please wait`}  />
   </div>
+//   <div className="App">
+//   <div className="chat-container">
+//     <div className="chat">
+//       {chat.map((message, index) => (
+//         <div key={index} className={`message ${message.type}`}>
+//           {message.text}
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+ 
+// </div>
   )
 }
-
 function Bg() {
   
   const texture = useTexture('/images/bg.webp');
