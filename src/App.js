@@ -14,7 +14,7 @@ import * as THREE from 'three';
 import axios from 'axios';
 const _ = require('lodash');
 
-const host = 'http://localhost:5000'
+const host = 'https://ask-bu-backend.vercel.app'
 
 function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) {
 
