@@ -22,7 +22,7 @@ import * as THREE from "three";
 import axios from "axios";
 const _ = require("lodash");
 
-// const host = "https://ask-bu.vercel.app";  // Replace with your actual backend URL
+// Use the backend URL provided
 const host = "https://bubackend.vercel.app";
 
 function makeSpeech(text) {
@@ -283,10 +283,6 @@ function Avatar({
   );
 }
 
-function makeSpeech(text) {
-  return axios.post(host + "/talk", { text });
-}
-
 const STYLES = {
   area: { position: "absolute", bottom: "10px", left: "10px", zIndex: 500 },
   text: {
@@ -325,20 +321,14 @@ function App() {
     setPlaying(false);
   }
 
-  // Player is read
+  // Player is ready
   function playerReady(e) {
     audioPlayer.current.audioEl.current.play();
     setPlaying(true);
   }
+
   return (
     <div className="full">
-      {/* <div style={STYLES.area}>
-
-
-        <input rows={4} type="text" style={STYLES.text} value={text} onChange={(e) => setText(e.target.value.substring(0, 200))} />
-        <button onClick={() => setSpeak(true)} style={STYLES.speak}> { speak? 'Sending...': 'Send' }</button>
-
-      </div> */}
       <div style={STYLES.full}>
         <div style={STYLES.area}>
           <input
@@ -362,7 +352,6 @@ function App() {
         onCanPlayThrough={playerReady}
       />
 
-      {/* <Stats /> */}
       <Canvas
         dpr={2}
         onCreated={(ctx) => {
@@ -370,11 +359,6 @@ function App() {
         }}
       >
         <OrthographicCamera makeDefault zoom={2000} position={[0, 1.65, 1]} />
-
-        {/* <OrbitControls
-        target={[0, 1.65, 0]}
-      /> */}
-
         <Suspense fallback={null}>
           <Environment
             background={false}
@@ -399,20 +383,9 @@ function App() {
       </Canvas>
       <Loader dataInterpolation={(p) => `Loading... please wait`} />
     </div>
-    //   <div className="App">
-    //   <div className="chat-container">
-    //     <div className="chat">
-    //       {chat.map((message, index) => (
-    //         <div key={index} className={`message ${message.type}`}>
-    //           {message.text}
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-
-    // </div>
   );
 }
+
 function Bg() {
   const texture = useTexture("/images/bg.webp");
 
