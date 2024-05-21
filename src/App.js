@@ -22,8 +22,12 @@ import * as THREE from "three";
 import axios from "axios";
 const _ = require("lodash");
 
-const host = "https://ask-bu.vercel.app";  // Replace with your actual backend URL
+// const host = "https://ask-bu.vercel.app";  // Replace with your actual backend URL
+const host = "https://bubackend.vercel.app";
 
+function makeSpeech(text) {
+  return axios.post(host + "/talk", { text });
+}
 
 function Avatar({
   avatar_url,
