@@ -30,6 +30,7 @@ function makeSpeech(text) {
 }
 
 function Avatar({
+  
   avatar_url,
   speak,
   setSpeak,
@@ -191,9 +192,9 @@ function Avatar({
     }
   });
 
+  
   const [clips, setClips] = useState([]);
   const mixer = useMemo(() => new THREE.AnimationMixer(gltf.scene), []);
-
   useEffect(() => {
     if (speak === false) return;
 
@@ -210,8 +211,7 @@ function Avatar({
           ),
         ];
 
-        filename = host + filename;
-
+        // Set the full URL of the speech file
         setClips(newClips);
         setAudioSource(filename);
       })
